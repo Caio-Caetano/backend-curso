@@ -1,11 +1,20 @@
-import 'package:shelf/shelf_io.dart' as shelf_io;
+import 'package:shelf/shelf.dart';
 
-import 'server_handler.dart';
+import 'api/blog_api.dart';
+import 'api/login_api.dart';
+import 'infra/custom_server.dart';
 
 void main() async {
-  ServeHandler _server = ServeHandler();
+  // Varios handlers separadamente, cascade
+  // verificar se o usuario esta verificado para acessar alguma rota, pelo middleware
 
-  final server = await shelf_io.serve(_server.handler, 'localhost', 8080);
+  var cascadeHandler =
+      Cascade().add(LoginApi().handler).add(BlogApi().handler).handler;
 
-  print('Nosso servidor foi iniciado http://localhost:8080');
+  // possivel de colocar handlers e middleware
+  // logRequests()
+  var handler =
+      Pipeline().addMiddleware(logRequests()).addHandler(cascadeHandler);
+
+  await CustomServer().initialize(handler);
 }
