@@ -5,12 +5,14 @@ import 'package:shelf_router/shelf_router.dart';
 
 import '../models/receita_model.dart';
 import '../services/generic_service.dart';
+import 'api.dart';
 
-class BlogApi {
+class BlogApi extends Api {
   final GenericService<ReceitaModel> _service;
   BlogApi(this._service);
 
-  Handler get handler {
+  @override
+  Handler getHandler({List<Middleware>? middlewares}) {
     Router router = Router();
 
     //listagem
@@ -41,6 +43,9 @@ class BlogApi {
       return Response.ok('bolo de cenoura');
     });
 
-    return router;
+    return createHandler(
+      router: router,
+      middlewares: middlewares,
+    );
   }
 }
