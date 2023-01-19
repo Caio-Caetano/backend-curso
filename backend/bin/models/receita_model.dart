@@ -1,5 +1,5 @@
 class ReceitaModel {
-  final int id;
+  final int? id;
   final String titulo;
   final String descricao;
   final String imagem;
@@ -15,5 +15,30 @@ class ReceitaModel {
     this.dtAtualizacao,
   );
 
-  
+  factory ReceitaModel.fromJson(Map map) {
+    return ReceitaModel(
+      map['id'] ?? '',
+      map['titulo'],
+      map['descricao'],
+      map['imagem'],
+      DateTime.now(),
+      map['dtAtualizacao'] != null
+          ? DateTime.fromMicrosecondsSinceEpoch(map['dtAtualizacao'])
+          : null,
+    );
+  }
+
+  Map toJson() {
+    return {
+      'id': id,
+      'titulo': titulo,
+      'descricao': descricao,
+      'imagem': imagem
+    };
+  }
+
+  @override
+  String toString() {
+    return 'ReceitaModel(id: $id, titulo: $titulo, descricao: $descricao, imagem: $imagem, dtPublicacao: $dtPublicacao, dtAtualizacao: $dtAtualizacao)';
+  }
 }
