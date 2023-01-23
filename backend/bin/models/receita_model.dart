@@ -2,7 +2,7 @@ class ReceitaModel {
   final int? id;
   final String titulo;
   final String descricao;
-  final String imagem;
+  //final String imagem;
   final DateTime dtPublicacao;
   final DateTime? dtAtualizacao;
 
@@ -10,7 +10,7 @@ class ReceitaModel {
     this.id,
     this.titulo,
     this.descricao,
-    this.imagem,
+    //this.imagem,
     this.dtPublicacao,
     this.dtAtualizacao,
   );
@@ -20,7 +20,7 @@ class ReceitaModel {
       map['id'] ?? '',
       map['titulo'],
       map['descricao'],
-      map['imagem'],
+      //map['imagem'],
       DateTime.now(),
       map['dtAtualizacao'] != null
           ? DateTime.fromMicrosecondsSinceEpoch(map['dtAtualizacao'])
@@ -33,12 +33,11 @@ class ReceitaModel {
       'id': id,
       'titulo': titulo,
       'descricao': descricao,
-      'imagem': imagem
     };
   }
 
   @override
   String toString() {
-    return 'ReceitaModel(id: $id, titulo: $titulo, descricao: $descricao, imagem: $imagem, dtPublicacao: $dtPublicacao, dtAtualizacao: $dtAtualizacao)';
+    return 'ReceitaModel(id: $id, titulo: $titulo, descricao: $descricao, dtPublicacao: $dtPublicacao, dtAtualizacao: $dtAtualizacao)';
   }
 }

@@ -1,10 +1,10 @@
-typedef T InstanceCreator<T>();
+typedef InstanceCreator<T> = T Function();
 
 class DependencyInjector {
   DependencyInjector._();
   static final _singleton = DependencyInjector._();
   factory DependencyInjector() => _singleton;
-  final _instanceMap = Map<Type, _InstanceGenerator<Object>>();
+  final _instanceMap = <Type, _InstanceGenerator<Object>>{};
 
   //register
   void register<T extends Object>(

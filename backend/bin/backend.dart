@@ -2,6 +2,7 @@ import 'package:shelf/shelf.dart';
 
 import 'apis/blog_api.dart';
 import 'apis/login_api.dart';
+import 'apis/register_api.dart';
 import 'infra/custom_server.dart';
 import 'infra/dependency_injector/injects.dart';
 import 'infra/middleware_interception.dart';
@@ -13,6 +14,7 @@ void main() async {
 
   var cascadeHandler = Cascade()
       .add(_di.get<LoginApi>().getHandler())
+      .add(_di.get<RegisterApi>().getHandler())
       .add(_di.get<BlogApi>().getHandler(isSecurity: true))
       .handler;
 
