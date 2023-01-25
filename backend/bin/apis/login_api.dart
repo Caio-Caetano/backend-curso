@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
-import 'package:test/expect.dart';
 
 import '../infra/security/security_service.dart';
 import '../models/user_model.dart';
